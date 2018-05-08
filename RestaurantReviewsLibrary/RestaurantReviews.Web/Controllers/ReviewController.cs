@@ -31,9 +31,10 @@ namespace RestaurantReviews.Web.Controllers
             return View();
         }
         [HttpGet]
-        [Route("Review/New")]
-        public ActionResult New()
+        [Route("Review/New/{id}")]
+        public ActionResult New(int id)
         {
+            ViewData["restId"] = id;
             return View();
         }
 
@@ -42,29 +43,20 @@ namespace RestaurantReviews.Web.Controllers
         [HttpPost]
         public ActionResult Create(RestaurantReviews.Library.Reviews rev)
         {
+            int restId = Int32.Parse(Request.Form["restId"]);
+            rev.RestaurantId = restId;
             MethodCalls.AddReviewToDb(rev);
-            return RedirectToAction("All");
+            return View("Restaurant/Details");
         }
 
         // POST: Review/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: Review/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        [Route("Review/Update/{id}")]
+        public ActionResult Edit(Reviews rev)
         {
+            MethodCalls.UpdateRev(rev);
             return View();
         }
 
@@ -78,13 +70,13 @@ namespace RestaurantReviews.Web.Controllers
 
         }
 
-        // GET: Review/Delete/5
-        [HttpPost]
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             MethodCalls.DeleteRev(id);
-            return View();
+            return RedirectToAction("All");
         }
+        // GET: Review/Delete/5
 
         // POST: Review/Delete/5
         [HttpPost]

@@ -47,6 +47,11 @@ namespace RestaurantReviews.Web.Controllers
                 ViewBag.restaurants = TempData["stringSizeList"];
             if (TempData["avgRatingList"] != null)
                 ViewBag.restaurants = TempData["avgRatingList"];
+            if (TempData["search"] != null)
+            {
+                ViewBag.restaurants = TempData["search"];
+            }
+
             return View();
         }
 
@@ -80,6 +85,14 @@ namespace RestaurantReviews.Web.Controllers
         {
             List<Restaurant> displaySorted = Sort.AvgRatingSort(restaurants);
             TempData["avgRatingList"] = displaySorted;
+            return RedirectToAction("All");
+        }
+        [HttpPost]
+        [Route("Restaurant/Search")]
+        public ActionResult SearchBox(FormCollection form)
+        {
+            List<Restaurant> searchList = MethodCalls.SearchRestName(Request.Form["Search_Info"]);
+            TempData["search"] = searchList;
             return RedirectToAction("All");
         }
         [HttpGet]
@@ -116,27 +129,23 @@ namespace RestaurantReviews.Web.Controllers
             }*/
         }
         [HttpGet]
-        [Route("Restaurant/Update/{rest}")]
-        public ActionResult Edit(Restaurant rest)
+        [Route("Restaurant/Update/{id}")]
+        public ActionResult Edit(int id)
         {
-            MethodCalls.UpdateRest(rest);
-            return RedirectToAction("All");
+            Restaurant rest = MethodCalls.GetRestById(id);
+            ViewBag.rest = rest;
+            return View("Update");
         }
 
         // POST: Restaurant/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [Route("Restaurant/Update/{id}")]
+        public ActionResult Edit(Restaurant rest)
         {
-            try
-            {
                 // TODO: Add update logic here
+                MethodCalls.UpdateRest(rest);
+                return RedirectToAction("All");
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: Restaurant/Delete/5

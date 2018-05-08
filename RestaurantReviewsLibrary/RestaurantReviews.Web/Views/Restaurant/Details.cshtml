@@ -61,7 +61,7 @@
     </dd>
 </dl>
 <br />
-@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+@Html.ActionLink("Edit", "Update", new { Model.restaurant }) |
 <div>
     <h4>Reviews</h4>
     <table>
@@ -82,7 +82,7 @@
         </tbody>
     </table>
     <div>
-        <a href=@($"/Review/New") class="btn btn-default btn-toolbar">Add new review</a>
+        <a href=@($"/Review/New/{Model.ID}") class="btn btn-default btn-toolbar">Add new review</a>
     </div>
     <p>
         @Html.ActionLink("Back to List", "All")

@@ -216,11 +216,13 @@
     <Content Include="Views\Restaurant\New.cshtml" />
     <Content Include="Views\Restaurant\All.cshtml" />
     <Content Include="Views\Restaurant\Details.cshtml" />
+    <Content Include="Views\Restaurant\Update.cshtml" />
+    <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Review\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Review\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

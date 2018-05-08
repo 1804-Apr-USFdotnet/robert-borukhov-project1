@@ -33,7 +33,7 @@
                         <span>
                             <a style="margin-bottom: 3px; width:100px;" href=@($"/Restaurant/Details/{res.ID}") class="btn btn-primary btn-toolbar">Details</a>
                             <button type="button" onclick="location.href='@Url.Action("Confirmation", "Restaurant", new { id = @res.ID })'" class="btn btn-primary">Delete</button>
-                            <button type="button" onclick="location.href='@Url.Action("Confirmation", "Restaurant", new { id = @res.ID })'" class="btn btn-primary">Update</button>
+                            <button type="button" onclick="location.href='@Url.Action("Update", "Restaurant", new { id = @res.ID })'" class="btn btn-primary">Update</button>
                         </span>
                     </td>
                 </tr>
