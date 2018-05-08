@@ -19,21 +19,27 @@ namespace RestaurantReviews.Web.Controllers
 
             log = LogManager.GetCurrentClassLogger();
         }
-
+        // GET: Review/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
         // GET: Review
         public ActionResult Index()
         {
 
             return View();
         }
-
-        // GET: Review/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        [Route("Review/New")]
+        public ActionResult New()
         {
             return View();
         }
 
+
         // GET: Review/Create
+        [HttpPost]
         public ActionResult Create(RestaurantReviews.Library.Reviews rev)
         {
             MethodCalls.AddReviewToDb(rev);
@@ -73,6 +79,7 @@ namespace RestaurantReviews.Web.Controllers
         }
 
         // GET: Review/Delete/5
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             MethodCalls.DeleteRev(id);

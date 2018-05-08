@@ -11,13 +11,11 @@
     <title>Details</title>
 </head>
 <h2>@Html.DisplayFor(model => model.restaurant.Name)</h2>
-
 <div>
     <h4>Details</h4>
     <hr />
     <dl class="dl-horizontal"></dl>
 </div>
-
 <dl class="dl-horizontal">
     <dt>
         @Html.DisplayNameFor(model => model.restaurant.AvgRating)
@@ -63,25 +61,30 @@
     </dd>
 </dl>
 <br />
+@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
 <div>
     <h4>Reviews</h4>
-    <tbody>
-        @{
-            foreach (var rev in Model.restaurant.reviews)
-            {
-                <tr>
-                    <td>@rev.ToString()</td>
-                    <td>
-                        <span>
-                            <button type="button" onclick="location.href='@Url.Action("Confirmation", "Review", new { id = @rev.ReviewId})'" class="btn btn-primary">Delete</button>
-                            <button type="button" onclick="location.href='@Url.Action("Confirmation", "Review", new { id = @rev.ReviewId })'" class="btn btn-primary">Update</button>
-                        </span>
-                    </td>
-                </tr>}
-        }
-    </tbody>
+    <table>
+        <tbody>
+            @{
+                foreach (var rev in Model.restaurant.reviews)
+                {
+                    <tr>
+                        <td>@rev.ToString()</td>
+                        <td>
+                            <span>
+                                <button type="button" onclick="location.href='@Url.Action("Delete", "Review", new { id = @rev.ReviewId})'" class="btn btn-primary">Delete</button>
+                                <button type="button" onclick="location.href='@Url.Action("Update", "Review", new { id = @rev.ReviewId })'" class="btn btn-primary">Update</button>
+                            </span>
+                        </td>
+                    </tr>}
+            }
+        </tbody>
+    </table>
+    <div>
+        <a href=@($"/Review/New") class="btn btn-default btn-toolbar">Add new review</a>
+    </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
         @Html.ActionLink("Back to List", "All")
     </p>
 </div>
