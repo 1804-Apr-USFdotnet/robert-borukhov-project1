@@ -92,15 +92,20 @@ namespace RestaurantReviews.Library
                 foreach (var i in member.reviews)
                     Console.WriteLine(i.ToString());
         }
-        public static void searchRestName(string sub)
+        /*public static void searchRestName(string sub)
         {
             /*if (rest == null)
             {
                //Serializer.SetList();
-            }*/
+            }
             newList = Search.Lookup(rest, sub);
             foreach (var name in newList)
                 Console.WriteLine(name.Name);
+        }*/
+        public static List<Restaurant> SearchRestName(string sub)
+        {
+            newList = Search.Lookup(rest, sub);
+            return newList;
         }
         public static Restaurant GetRestById(int id)
         {
@@ -108,6 +113,7 @@ namespace RestaurantReviews.Library
         }
         public static void AddRestaurantToDb(Restaurant rest)
         {
+            rest.ID = 90;
             DLAccessor.AddRestToDb(rest);
         }
         public static void AddReviewToDb(Reviews rev)

@@ -8,7 +8,7 @@ namespace RestaurantReviews.Data
 {
     public class DataAccessLayer
     {
-        static RestaurantDBEntities rest = new RestaurantDBEntities();
+        static RestaurantDBEntities1 rest = new RestaurantDBEntities1();
         public static IEnumerable<Restaurant> getRestaurants()
         {
             return rest.Restaurants.ToList();

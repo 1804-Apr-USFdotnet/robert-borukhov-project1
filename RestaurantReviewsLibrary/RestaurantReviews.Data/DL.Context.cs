@@ -13,10 +13,10 @@ namespace RestaurantReviews.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RestaurantDBEntities : DbContext
+    public partial class RestaurantDBEntities1 : DbContext
     {
-        public RestaurantDBEntities()
-            : base("name=RestaurantDBEntities")
+        public RestaurantDBEntities1()
+            : base("name=RestaurantDBEntities1")
         {
         }
     

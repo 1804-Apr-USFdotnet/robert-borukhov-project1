@@ -23,6 +23,7 @@ namespace RestaurantReviews.Web.Controllers
         // GET: Review
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -33,9 +34,10 @@ namespace RestaurantReviews.Web.Controllers
         }
 
         // GET: Review/Create
-        public ActionResult Create()
+        public ActionResult Create(RestaurantReviews.Library.Reviews rev)
         {
-            return View();
+            MethodCalls.AddReviewToDb(rev);
+            return RedirectToAction("All");
         }
 
         // POST: Review/Create
@@ -64,21 +66,16 @@ namespace RestaurantReviews.Web.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
+            // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
+
         }
 
         // GET: Review/Delete/5
         public ActionResult Delete(int id)
         {
+            MethodCalls.DeleteRev(id);
             return View();
         }
 

@@ -18,7 +18,6 @@ namespace RestaurantReviews.Data
         public Restaurant()
         {
             this.Reviews = new HashSet<Review>();
-            this.Reviews1 = new HashSet<Review>();
         }
     
         public int ID { get; set; }
@@ -27,12 +26,10 @@ namespace RestaurantReviews.Data
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public Nullable<int> Zip { get; set; }
+        public int Zip { get; set; }
         public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review> Reviews1 { get; set; }
     }
 }

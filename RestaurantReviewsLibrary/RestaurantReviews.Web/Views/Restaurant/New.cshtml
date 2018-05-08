@@ -1,12 +1,12 @@
 ﻿@model RestaurantReviews.Library.Restaurant
 
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Add Restaurant";
 }
 
 <h2>New</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create","Restaurant")) 
 {
     @Html.AntiForgeryToken()
     
@@ -19,14 +19,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AvgRating, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AvgRating, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AvgRating, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -87,5 +79,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "All")
 </div>

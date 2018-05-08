@@ -14,12 +14,12 @@ namespace RestaurantReviews.Data
     
     public partial class Review
     {
-        public int RestaurantId { get; set; }
+        public int Reviewer_Id { get; set; }
         public string Reviewer { get; set; }
         public string Comment { get; set; }
         public double Rating { get; set; }
+        public int RestaurantId { get; set; }
     
         public virtual Restaurant Restaurant { get; set; }
-        public virtual Restaurant Restaurant1 { get; set; }
     }
 }

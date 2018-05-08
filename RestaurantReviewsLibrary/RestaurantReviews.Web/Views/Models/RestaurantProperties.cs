@@ -14,8 +14,8 @@ namespace RestaurantReviews.Web.Views.Models
 
         public RestaurantProperties(int id)
         {
-            ID = id;
-            reviews = RestaurantReviews.Library.PrintRestaurant.PrintReviewsById(RestaurantReviews.Library.MethodCalls.rest, id);
+            this.ID = id;
+            //reviews = RestaurantReviews.Library.PrintRestaurant.PrintReviewsById(RestaurantReviews.Library.MethodCalls.rest, id);
             restaurant = RestaurantReviews.Library.PrintRestaurant.PrintRestaurantById(RestaurantReviews.Library.MethodCalls.rest, id);
         }
         

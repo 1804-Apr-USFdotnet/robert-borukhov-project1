@@ -19,6 +19,7 @@ namespace RestaurantReviews.Library
             var libRev = new Reviews()
             {
                 RestaurantId = dlRev.RestaurantId,
+                ReviewId = dlRev.Reviewer_Id,
                 Reviewer = dlRev.Reviewer,
                 Comment = dlRev.Comment,
                 Rating = dlRev.Rating
@@ -28,7 +29,7 @@ namespace RestaurantReviews.Library
         public static IEnumerable<RestaurantReviews.Data.Review> GetReviewsByID(int restId)
         {
             IEnumerable<RestaurantReviews.Data.Review> reviewList;
-            var dbRevs = new RestaurantDBEntities();
+            var dbRevs = new RestaurantDBEntities1();
             reviewList = dbRevs.Reviews.Where(x => x.RestaurantId == restId).ToList();
             return reviewList;
         }
@@ -38,7 +39,7 @@ namespace RestaurantReviews.Library
         }
         public static Restaurant SetRest(RestaurantReviews.Data.Restaurant dlRest)
         {
-            int restId = dlRest.ID;
+            int restId = (int)dlRest.ID;
             List<Reviews> revList = GetRevListById(restId);
             var restModel = new Restaurant()
             {
@@ -59,7 +60,7 @@ namespace RestaurantReviews.Library
         public static IEnumerable<RestaurantReviews.Data.Restaurant> GetRestaurants()
         {
             IEnumerable<RestaurantReviews.Data.Restaurant> dlRest;
-            var dbList = new RestaurantDBEntities();
+            var dbList = new RestaurantDBEntities1();
             dlRest = dbList.Restaurants.ToList();
             return dlRest;
         }
@@ -70,10 +71,11 @@ namespace RestaurantReviews.Library
         //Create a review
         public static void AddReviewToDb(Reviews rev)
         {
-            var db = new RestaurantDBEntities();
+            var db = new RestaurantDBEntities1();
             RestaurantReviews.Data.Review dbRev = new RestaurantReviews.Data.Review();
             dbRev.Reviewer = rev.Reviewer;
             dbRev.RestaurantId = rev.RestaurantId;
+            dbRev.Reviewer_Id = rev.ReviewId;
             dbRev.Comment = rev.Comment;
             dbRev.Rating = rev.Rating;
             db.Reviews.Add(dbRev);
@@ -82,7 +84,7 @@ namespace RestaurantReviews.Library
         //Create a restaurant
         public static void AddRestToDb(Restaurant rest)
         {
-            var db = new RestaurantDBEntities();
+            var db = new RestaurantDBEntities1();
             RestaurantReviews.Data.Restaurant dbRest = new RestaurantReviews.Data.Restaurant();
             dbRest.Name = rest.Name;
             dbRest.Address = rest.Address;
@@ -91,13 +93,14 @@ namespace RestaurantReviews.Library
             dbRest.State = rest.State;
             dbRest.Zip = rest.Zip;
             dbRest.PhoneNumber = rest.PhoneNumber;
+            dbRest.ID = 90;
             db.Restaurants.Add(dbRest);
             db.SaveChanges();
         }
         //Update a review
         public static void UpdateReview(Reviews rev)
         {
-            var db = new RestaurantDBEntities();
+            var db = new RestaurantDBEntities1();
             RestaurantReviews.Data.Review dbRev = db.Reviews.Find(rev.RestaurantId);
             dbRev.Comment = rev.Comment;
             dbRev.Rating = rev.Rating;
@@ -107,7 +110,7 @@ namespace RestaurantReviews.Library
         //Update a restaurant
         public static void UpdateRestaurant(Restaurant rest)
         {
-            var db = new RestaurantDBEntities();
+            var db = new RestaurantDBEntities1();
             RestaurantReviews.Data.Restaurant dbRest = db.Restaurants.Find(rest.ID);
             dbRest.Name = rest.Name;
             dbRest.Address = rest.Address;
@@ -121,7 +124,7 @@ namespace RestaurantReviews.Library
         //Delete a review
         public static void DeleteReview(int id)
         {
-            var db = new RestaurantDBEntities();
+            var db = new RestaurantDBEntities1();
             RestaurantReviews.Data.Review dlRev = db.Reviews.Find(id);
             db.Reviews.Remove(dlRev);
             db.SaveChanges();
@@ -129,7 +132,7 @@ namespace RestaurantReviews.Library
         //Delete a restaurant
         public static void DeleteRestaurant(int id)
         {
-            var db = new RestaurantDBEntities();
+            var db = new RestaurantDBEntities1();
             RestaurantReviews.Data.Restaurant dlRest = db.Restaurants.Find(id);
             db.Restaurants.Remove(dlRest);
             db.SaveChanges();

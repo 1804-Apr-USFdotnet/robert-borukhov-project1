@@ -26,13 +26,13 @@ namespace RestaurantReviews.Web.Controllers
         public ActionResult Index()
         {
             List<Restaurant> topThree = MethodCalls.TopThree();
-            ViewBag.topThree = topThree;    
+            ViewBag.topThree = topThree;
             return View();
         }
 
         // GET: Restaurant ==> Display Restaurants
         // ~/Resturant/DisplayRestaurants
-        
+
         [HttpGet]
         [Route("Restaurant/All")]
         public ActionResult All()
@@ -82,10 +82,12 @@ namespace RestaurantReviews.Web.Controllers
             TempData["avgRatingList"] = displaySorted;
             return RedirectToAction("All");
         }
-        
+        [HttpGet]
+        [Route("Restaurant/Details/{id}")]
         // GET: Restaurant/Details/5
         public ActionResult Details(int id)
         {
+
             RestaurantProperties rp = new RestaurantProperties(id);
             return View(rp);
         }
@@ -102,29 +104,23 @@ namespace RestaurantReviews.Web.Controllers
         [HttpPost]
         public ActionResult Create(RestaurantReviews.Library.Restaurant rest)
         {
-            try
+            //try
             {
                 // TODO: Add insert logic here
                 RestaurantReviews.Library.MethodCalls.AddRestaurantToDb(rest);
-                return RedirectToAction("Index");
+                return RedirectToAction("All");
             }
-            catch
+            /*catch
             {
                 return View();
-            }
+            }*/
         }
-
-        // GET: Restaurant/Edit/5
-        /*public ActionResult Edit(int id)
-        {
-
-            return View();
-        }*/
-
+        [HttpGet]
+        [Route("Restaurant/Update/{rest}")]
         public ActionResult Edit(Restaurant rest)
         {
             MethodCalls.UpdateRest(rest);
-            return RedirectToAction("Index");
+            return RedirectToAction("All");
         }
 
         // POST: Restaurant/Edit/5
@@ -144,32 +140,29 @@ namespace RestaurantReviews.Web.Controllers
         }
 
         // GET: Restaurant/Delete/5
+        [HttpPost]
+        [Route("Restaurant/Delete")]
         public ActionResult Delete(int id)
         {
             MethodCalls.DeleteRest(id);
-             return RedirectToAction("Index");
+            return RedirectToAction("All");
         }
-
+        [HttpGet]
+        [Route("Restaurant/Confirmation/{id}")]
         public ActionResult DeleteMessage(int id)
         {
             Restaurant rest = MethodCalls.GetRestById(id);
             ViewBag.restaurant = rest;
-            return PartialView("_DeleteMessage");
+            return PartialView("_DeleteMessage",rest);
         }
-        // POST: Restaurant/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        [Route("Restaurant/Search/{sub}")]
+        public ActionResult SearchString(string sub)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            List<Restaurant> newList = MethodCalls.SearchRestName(sub);
+            ViewBag.restList = newList;
+            return RedirectToAction("All");
         }
+
     }
 }

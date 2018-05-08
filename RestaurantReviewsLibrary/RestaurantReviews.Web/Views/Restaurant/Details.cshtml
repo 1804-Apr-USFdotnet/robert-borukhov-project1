@@ -1,17 +1,87 @@
-﻿@model RestaurantReviews.Web.Views.Models.ReviewProperties
+﻿@model RestaurantReviews.Web.Views.Models.RestaurantProperties
 
 @{
-    ViewBag.Title = ViewBag.restaurant.Name;
+    ViewBag.Title = Model.restaurant.Name;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<h2>@Html.DisplayFor(model => model.restaurant.Name)</h2>
 
 <div>
-    <h4>ReviewProperties</h4>
+    <h4>Details</h4>
     <hr />
     <dl class="dl-horizontal"></dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.restaurant.AvgRating)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.restaurant.AvgRating)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.restaurant.Address)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.restaurant.Address)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.restaurant.Street)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.restaurant.Street)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.restaurant.City)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.restaurant.City)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.restaurant.State)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.restaurant.State)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.restaurant.Zip)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.restaurant.Zip)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.restaurant.PhoneNumber)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.restaurant.PhoneNumber)
+    </dd>
+</dl>
+<br />
+<div>
+    <h4>Reviews</h4>
+    <tbody>
+        @{
+            foreach (var rev in Model.restaurant.reviews)
+            {
+                <tr>
+                    <td>@rev.ToString()</td>
+                    <td>
+                        <span>
+                            <button type="button" onclick="location.href='@Url.Action("Confirmation", "Review", new { id = @rev.ReviewId})'" class="btn btn-primary">Delete</button>
+                            <button type="button" onclick="location.href='@Url.Action("Confirmation", "Review", new { id = @rev.ReviewId })'" class="btn btn-primary">Update</button>
+                        </span>
+                    </td>
+                </tr>}
+        }
+    </tbody>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "All")
+    </p>
+</div>

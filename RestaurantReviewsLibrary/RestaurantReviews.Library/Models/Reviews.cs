@@ -12,6 +12,7 @@ namespace RestaurantReviews.Library
         public string Comment { get; set; }
         public double Rating { get; set; }
         public int RestaurantId { get; set; }
+        public int ReviewId { get; set; }
         public override string ToString()
         {
             return $"\nRating: {Rating}\n {Reviewer}: {Comment}\n";          

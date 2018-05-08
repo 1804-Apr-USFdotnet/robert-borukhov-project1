@@ -54,52 +54,52 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessLayer.cs" />
+    <Compile Include="DL.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DL.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DL.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restaurant.cs">
-      <DependentUpon>RestaurantDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RestaurantDb.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RestaurantDb.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RestaurantDb.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RestaurantDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RestaurantDb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RestaurantDb.edmx</DependentUpon>
+      <DependentUpon>DL.tt</DependentUpon>
     </Compile>
     <Compile Include="Review.cs">
-      <DependentUpon>RestaurantDb.tt</DependentUpon>
+      <DependentUpon>DL.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
-    <EntityDeploy Include="RestaurantDb.edmx">
+    <EntityDeploy Include="DL.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RestaurantDb.Designer.cs</LastGenOutput>
+      <LastGenOutput>DL.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="RestaurantDb.edmx.diagram">
-      <DependentUpon>RestaurantDb.edmx</DependentUpon>
+    <None Include="DL.edmx.diagram">
+      <DependentUpon>DL.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RestaurantDb.Context.tt">
+    <Content Include="DL.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RestaurantDb.edmx</DependentUpon>
-      <LastGenOutput>RestaurantDb.Context.cs</LastGenOutput>
+      <DependentUpon>DL.edmx</DependentUpon>
+      <LastGenOutput>DL.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="RestaurantDb.tt">
+    <Content Include="DL.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RestaurantDb.edmx</DependentUpon>
-      <LastGenOutput>RestaurantDb.cs</LastGenOutput>
+      <DependentUpon>DL.edmx</DependentUpon>
+      <LastGenOutput>DL.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

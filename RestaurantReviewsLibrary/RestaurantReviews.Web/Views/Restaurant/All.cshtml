@@ -9,7 +9,7 @@
     <a href="AscSort" class="btn btn-default">Sort By Name (A-Z)</a>
     <a href="DescSort" class="btn btn-default">Sort By Name (Z-A)</a>
     <a href="StringSize" class="btn btn-default">Sort By Restaurant Name Size</a>
-    <a href="AvgRating" class="btn btn-default">Sort By Name (Z-A)</a>
+    <a href="AvgRating" class="btn btn-default">Sort By Avg Rating</a>
 </div>
 
 <table class="table">
@@ -31,7 +31,9 @@
                     <td>@res.PhoneNumber</td>
                     <td>
                         <span>
-                            <a style="margin-bottom: 3px; width:100px;" href=@($"/Restaurants/Details/{res.ID}") class="btn btn-default btn-toolbar">Details</a>
+                            <a style="margin-bottom: 3px; width:100px;" href=@($"/Restaurant/Details/{res.ID}") class="btn btn-primary btn-toolbar">Details</a>
+                            <button type="button" onclick="location.href='@Url.Action("Confirmation", "Restaurant", new { id = @res.ID })'" class="btn btn-primary">Delete</button>
+                            <button type="button" onclick="location.href='@Url.Action("Confirmation", "Restaurant", new { id = @res.ID })'" class="btn btn-primary">Update</button>
                         </span>
                     </td>
                 </tr>
@@ -51,5 +53,5 @@
 
 </table>
 <div>
-    <a href=@($"/Restaurants/Create") class="btn btn-default btn-toolbar">Add new Restaurant</a>
+    <a href=@($"/Restaurant/New") class="btn btn-default btn-toolbar">Add new Restaurant</a>
 </div>

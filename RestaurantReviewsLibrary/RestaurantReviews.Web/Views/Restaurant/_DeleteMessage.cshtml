@@ -1,2 +1,22 @@
 ﻿@model RestaurantReviews.Library.Restaurant
 
+<h3>Once deleted, there is no way to recover the restaurant information!</h3>
+<div>
+    <h4>Restaurant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    @using (Html.BeginForm("Delete", "Restaurant", new { id = Model.ID}))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> @Html.ActionLink("Back to List", "All")
+        </div>
+    }
+</div>
