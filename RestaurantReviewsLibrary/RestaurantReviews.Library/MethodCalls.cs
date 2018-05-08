@@ -11,22 +11,31 @@ namespace RestaurantReviews.Library
         public static List<Restaurant> rest = new List<Restaurant>();
         public static List<Restaurant> newList = new List<Restaurant>();
         public static List<Reviews> rev = new List<Reviews>();
+        public static Restaurant singleRest = new Restaurant();
         public static void SetLibRest()
         {
-            rest = DALAccessor.GetLibRestaurants();
+            rest = DLAccessor.GetLibRestaurants();
         }
-         
-        public static void Topthree()
+
+        /*public static void Topthree()
         {
             /*if(rest == null)
             {
                //Serializer.SetList();
-            }*/
+            }
+        newList = Sort.AvgRatingSort(rest);
+            for (int i = 0; i< 3; i++)
+                Console.WriteLine(newList.ElementAt(i).Name + " Rating: " + newList.ElementAt(i).AvgRating);
+        }*/
+        public static List<Restaurant> TopThree()
+        {
+            List<Restaurant> returnList = new List<Restaurant>();
             newList = Sort.AvgRatingSort(rest);
             for (int i = 0; i < 3; i++)
-                Console.WriteLine(newList.ElementAt(i).Name + " Rating: " + newList.ElementAt(i).AvgRating);
+                returnList.Add(newList.ElementAt(i));
+            return returnList;
         }
-        public static void chooseSort(int x)
+        public static void ChooseSort(int x)
         {
             /*if (rest == null)
             {
@@ -43,7 +52,7 @@ namespace RestaurantReviews.Library
             foreach (var i in newList)
                 Console.WriteLine(i.Name);
         }
-        public static void returnRestByName(string name)
+        public static void ReturnRestByName(string name)
         {
             /*if (rest == null)
             {
@@ -53,17 +62,16 @@ namespace RestaurantReviews.Library
             foreach (var restList in newList)
                 Console.WriteLine(restList.ToString());
         }
-        public static void returnRestById(int id)
+        public static void ReturnRestById(int id)
         {
             /*if (rest == null)
             {
                 //Serializer.SetList();
             }*/
-            newList = PrintRestaurant.PrintRestaurantById(rest, id);
-            foreach (var restList in newList)
-                Console.WriteLine(restList.ToString());
+            singleRest = PrintRestaurant.PrintRestaurantById(rest, id);
+            Console.WriteLine(singleRest.ToString());
         }
-        public static void getReviewsByName(string name)
+        public static void GetReviewsByName(string name)
         {
             /*if (rest == null)
             {
@@ -79,7 +87,7 @@ namespace RestaurantReviews.Library
             {
                 //Serializer.SetList();
             }*/
-            newList = PrintRestaurant.PrintReviewsById(rest, id);
+            rev = PrintRestaurant.PrintReviewsById(rest, id);
             foreach (var member in newList)
                 foreach (var i in member.reviews)
                     Console.WriteLine(i.ToString());
@@ -93,6 +101,34 @@ namespace RestaurantReviews.Library
             newList = Search.Lookup(rest, sub);
             foreach (var name in newList)
                 Console.WriteLine(name.Name);
+        }
+        public static Restaurant GetRestById(int id)
+        {
+            return PrintRestaurant.PrintRestaurantById(rest, id);
+        }
+        public static void AddRestaurantToDb(Restaurant rest)
+        {
+            DLAccessor.AddRestToDb(rest);
+        }
+        public static void AddReviewToDb(Reviews rev)
+        {
+            DLAccessor.AddReviewToDb(rev);
+        }
+        public static void UpdateRest(Restaurant rest)
+        {
+            DLAccessor.UpdateRestaurant(rest);
+        }
+        public static void UpdateRev(Reviews rev)
+        {
+            DLAccessor.UpdateReview(rev);
+        }
+        public static void DeleteRest(int id)
+        {
+            DLAccessor.DeleteRestaurant(id);
+        }
+        public static void DeleteRev(int id)
+        {
+            DLAccessor.DeleteReview(id);
         }
     }
 }

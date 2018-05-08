@@ -27,19 +27,19 @@ namespace RestaurantReviews.Client
                 Console.WriteLine("5. Search for a restaurant.");
                 Console.WriteLine("6. Quit Application");
                 x = Convert.ToInt32(Console.ReadLine());
-                while (x>6 || x<1)
+                while (x > 6 || x < 1)
                 {
                     Console.WriteLine("That is an invalid input. Please try again: ");
                     x = Convert.ToInt32(Console.ReadKey());
                 }
-                switch(x)
+                switch (x)
                 {
-                    case 1 :
+                    case 1:
                         {
                             MethodCalls.Topthree();
                             break;
                         }
-                    case 2 :
+                    case 2:
                         {
                             Console.WriteLine("Press the number corresponding to the method of sorting the restaurants");
                             Console.WriteLine("1. Sort Alphabetically");
@@ -55,7 +55,7 @@ namespace RestaurantReviews.Client
                             MethodCalls.chooseSort(x);
                             break;
                         }
-                    case 3 :
+                    case 3:
                         {
                             Console.WriteLine("Choose the method of selecting a restaurant");
                             Console.WriteLine("1. By Name");
@@ -105,21 +105,21 @@ namespace RestaurantReviews.Client
                             }
                             break;
                         }
-                    case 5 :
+                    case 5:
                         {
                             Console.WriteLine("Enter the string to search");
                             restName = Console.ReadLine();
                             MethodCalls.searchRestName(restName);
                             break;
                         }
-                    case 6 :
+                    case 6:
                         {
                             log.Info(x);
-                            execute =false;
+                            execute = false;
                             break;
                         }
                 }
-            }            
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace RestaurantReviews.Library.Tests
             Assert.AreEqual(expected,actual.Count());
         }
 
-        [TestMethod()]
+        /*[TestMethod()]
         public void PrintRestaurantByIdTest()
         {
             MethodCalls.SetLibRest();
@@ -29,7 +29,7 @@ namespace RestaurantReviews.Library.Tests
             List<Restaurant> test1 = MethodCalls.rest;
             List<Restaurant> actual = RestaurantReviews.Library.PrintRestaurant.PrintRestaurantById(test1, 2);
             Assert.AreEqual(expected, actual.Count());
-        }
+        }*/
 
         [TestMethod()]
         public void PrintReviewsTest()
@@ -41,7 +41,7 @@ namespace RestaurantReviews.Library.Tests
             Assert.AreEqual(expected, actual.Count());
         }
 
-        [TestMethod()]
+        /*[TestMethod()]
         public void PrintReviewsByIdTest()
         {
             MethodCalls.SetLibRest();
@@ -49,6 +49,6 @@ namespace RestaurantReviews.Library.Tests
             List<Restaurant> test1 = MethodCalls.rest;
             List<Restaurant> actual = RestaurantReviews.Library.PrintRestaurant.PrintReviewsById(test1, 4);
             Assert.AreEqual(expected, actual.Count());
-        }
+        }*/
     }
 }

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<RestaurantReviews.Web.Views.Models.RestaurantProperties>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>All Restaurants</h2>
+<div>
+    <a href="AscSort" class="btn btn-default">Sort By Name (A-Z)</a>
+    <a href="DescSort" class="btn btn-default">Sort By Name (Z-A)</a>
+    <a href="StringSize" class="btn btn-default">Sort By Restaurant Name Size</a>
+    <a href="AvgRating" class="btn btn-default">Sort By Name (Z-A)</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Restaurant</th>
+            <th scope="col">AvgRating</th>
+            <th scope="col">Phone #</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var res in ViewBag.restaurants)
+            {
+                <tr>
+                    <td>@res.ID</td>
+                    <td>@res.Name</td>
+                    <td>@res.AvgRating</td>
+                    <td>@res.PhoneNumber</td>
+                    <td>
+                        <span>
+                            <a style="margin-bottom: 3px; width:100px;" href=@($"/Restaurants/Details/{res.ID}") class="btn btn-default btn-toolbar">Details</a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }*@
+
+</table>
+<div>
+    <a href=@($"/Restaurants/Create") class="btn btn-default btn-toolbar">Add new Restaurant</a>
+</div>

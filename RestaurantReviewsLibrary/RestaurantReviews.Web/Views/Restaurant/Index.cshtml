@@ -1,0 +1,30 @@
+﻿@model List<RestaurantReviews.Library.Restaurant>
+
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Restaurant</th>
+                <th scope="col">AvgRating</th>
+                <th scope="col">PhoneNumber</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (var res in ViewBag.topThree)
+                {
+            <tr>
+                <td>@res.Name</td>
+                <td>@res.AvgRating</td>
+                <td>@res.PhoneNumber</td>                
+            </tr>
+                    }
+                }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <button type="button" onclick="location.href='@Url.Action("All", "Restaurant")'" class="btn btn-primary">View All Restaurants</button>
+</div>
+

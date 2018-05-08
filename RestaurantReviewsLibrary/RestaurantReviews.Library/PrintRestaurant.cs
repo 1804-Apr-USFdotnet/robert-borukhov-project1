@@ -17,13 +17,14 @@ namespace RestaurantReviews.Library
                     newList.Add(list);
             return newList;
         }
-        public static List<Restaurant> PrintRestaurantById(List<Restaurant> rest, int id)
+        public static Restaurant PrintRestaurantById(List<Restaurant> rest, int id)
         {
-            List<Restaurant> newList = new List<Restaurant>();
+            //List<Restaurant> newList = new List<Restaurant>();
+            Restaurant rest1 = new Restaurant();
             foreach (var list in rest)
                 if (list.ID == id)
-                    newList.Add(list);
-            return newList;
+                    rest1 = list;
+            return rest1;
         }
         public static List<Restaurant> PrintReviews(List<Restaurant> rest, string text)
         {
@@ -34,13 +35,14 @@ namespace RestaurantReviews.Library
                     newList.Add(list);
             return newList;
         }
-        public static List<Restaurant> PrintReviewsById(List<Restaurant> rest, int id)
+        public static List<Reviews> PrintReviewsById(List<Restaurant> rest, int id)
         {
-            List<Restaurant> newList = new List<Restaurant>();
+            //List<Restaurant> newList = new List<Restaurant>();
+            List<Reviews> revList = new List<Reviews>();
             foreach (var list in rest)
                 if (list.ID == id)
-                    newList.Add(list);
-            return newList;
-        }
+                    revList = list.reviews;
+            return revList;
+        }        
     }
 }
