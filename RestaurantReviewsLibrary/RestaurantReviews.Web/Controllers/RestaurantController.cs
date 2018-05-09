@@ -95,7 +95,7 @@ namespace RestaurantReviews.Web.Controllers
             TempData["search"] = searchList;
             return RedirectToAction("All");
         }
-        [Required]
+        
         [HttpGet]
         [Route("Restaurant/Details/{id}")]
         // GET: Restaurant/Details/5
